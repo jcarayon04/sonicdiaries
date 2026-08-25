@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Sonic Diaries — Backing Tracks</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #000000;
+            --near-black: #0a0a0a;
+            --dark-gray: #141414;
+            --mid-gray: #666666;
+            --light-gray: #999999;
+            --off-white: #e8e8e8;
+            --white: #ffffff;
+            --accent: #c4a35a;
+            --accent-dim: rgba(196, 163, 90, 0.15);
+        }
+
+        body {
+            background-color: var(--black);
+            color: var(--off-white);
+            font-family: 'Inter', -apple-system, sans-serif;
+            font-weight: 300;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── HEADER ── */
+        .header {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--accent-dim) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .logo-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 600;
+            color: var(--white);
+            letter-spacing: 0.05em;
+            position: relative;
+        }
+
+        .subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 400;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-top: 1rem;
+        }
+
+        .tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.15rem;
+            color: var(--light-gray);
+            margin-top: 2.5rem;
+            max-width: 500px;
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--mid-gray);
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .scroll-hint svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--mid-gray);
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; }
+        }
+
+        /* ── DIVIDER ── */
+        .divider {
+            width: 60px;
+            height: 1px;
+            background: var(--accent);
+            margin: 0 auto;
+        }
+
+        /* ── TRACKS SECTION ── */
+        .tracks-section {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 4rem 2rem 6rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 400;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .section-desc {
+            font-size: 0.85rem;
+            color: var(--light-gray);
+            max-width: 480px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* ── TRACK CARDS ── */
+        .track-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .track-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.25rem 1.5rem;
+            background: var(--near-black);
+            transition: background 0.3s ease;
+        }
+
+        .track-item:hover {
+            background: var(--dark-gray);
+        }
+
+        .track-info {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+        }
+
+        .track-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--accent);
+            width: 2rem;
+            text-align: center;
+        }
+
+        .track-details {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+
+        .track-title {
+            font-size: 0.95rem;
+            font-weight: 400;
+            color: var(--white);
+        }
+
+        .track-meta {
+            font-size: 0.75rem;
+            color: var(--mid-gray);
+            letter-spacing: 0.05em;
+        }
+
+        .download-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1.1rem;
+            border: 1px solid rgba(196, 163, 90, 0.3);
+            border-radius: 4px;
+            background: transparent;
+            color: var(--accent);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .download-btn:hover {
+            background: var(--accent);
+            color: var(--black);
+            border-color: var(--accent);
+        }
+
+        .download-btn svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* ── FOOTER ── */
+        .footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .footer p {
+            font-size: 0.75rem;
+            color: var(--mid-gray);
+            line-height: 2;
+        }
+
+        .footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .songbook-note {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.6rem 1.2rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 4px;
+            font-size: 0.75rem;
+            color: var(--light-gray);
+            font-style: italic;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 600px) {
+            .track-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+                padding: 1.25rem;
+            }
+
+            .download-btn {
+                align-self: flex-end;
+            }
+
+            .header {
+                min-height: 80vh;
+            }
+        }
+
+        /* ── REDUCED MOTION ── */
+        @media (prefers-reduced-motion: reduce) {
+            .scroll-hint {
+                animation: none;
+                opacity: 0.6;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="logo-text">Sonic Diaries</div>
+        <div class="subtitle">Backing Tracks</div>
+        <p class="tagline">Official backing tracks from the songbook — play along, note for note or improvise freely.</p>
+        <div class="scroll-hint">
+            <span>Scroll</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
+                <path d="M12 5v14M5 12l7 7 7-7"/>
+            </svg>
+        </div>
+    </header>
+
+    <!-- TRACKS -->
+    <section class="tracks-section">
+        <div class="section-header">
+            <div class="divider" style="margin-bottom: 2rem;"></div>
+            <h2 class="section-title">Volume 1</h2>
+            <p class="section-desc">
+                Chaque backing track correspond à un morceau du songbook.<br>
+                Lancez la piste, ouvrez la partition, jouez.
+            </p>
+        </div>
+
+        <div class="track-list">
+
+            <div class="track-item">
+                <div class="track-info">
+                    <span class="track-number">1</span>
+                    <div class="track-details">
+                        <span class="track-title">Brand New Day</span>
+                        <span class="track-meta">4:32 · Standard tuning · 120 BPM</span>
+                    </div>
+                </div>
+                <a href="#" class="download-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                    </svg>
+                    Download
+                </a>
+            </div>
+
+            <div class="track-item">
+                <div class="track-info">
+                    <span class="track-number">2</span>
+                    <div class="track-details">
+                        <span class="track-title">Titre du morceau 2</span>
+                        <span class="track-meta">5:15 · Standard tuning · 90 BPM</span>
+                    </div>
+                </div>
+                <a href="#" class="download-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                    </svg>
+                    Download
+                </a>
+            </div>
+
+            <div class="track-item">
+                <div class="track-info">
+                    <span class="track-number">3</span>
+                    <div class="track-details">
+                        <span class="track-title">Titre du morceau 3</span>
+                        <span class="track-meta">3:48 · Drop D · 110 BPM</span>
+                    </div>
+                </div>
+                <a href="#" class="download-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                    </svg>
+                    Download
+                </a>
+            </div>
+
+            <div class="track-item">
+                <div class="track-info">
+                    <span class="track-number">4</span>
+                    <div class="track-details">
+                        <span class="track-title">Titre du morceau 4</span>
+                        <span class="track-meta">6:02 · Standard tuning · 85 BPM</span>
+                    </div>
+                </div>
+                <a href="#" class="download-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                    </svg>
+                    Download
+                </a>
+            </div>
+
+            <div class="track-item">
+                <div class="track-info">
+                    <span class="track-number">5</span>
+                    <div class="track-details">
+                        <span class="track-title">Titre du morceau 5</span>
+                        <span class="track-meta">4:17 · Standard tuning · 130 BPM</span>
+                    </div>
+                </div>
+                <a href="#" class="download-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                    </svg>
+                    Download
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>
+            Sonic Diaries — Julien Carayon<br>
+            Backing tracks accompagnant le <a href="#">Songbook Volume 1</a> disponible sur Amazon
+        </p>
+        <div class="songbook-note">
+            Ces pistes sont destinées à être jouées avec les partitions du songbook.
+        </div>
+    </footer>
+
+</body>
+</html>
