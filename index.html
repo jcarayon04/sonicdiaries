@@ -83,9 +83,10 @@
         .track-details { display: flex; flex-direction: column; gap: 0.2rem; }
         .track-title { font-size: 0.95rem; font-weight: 400; color: var(--white); }
         .track-meta { font-size: 0.75rem; color: var(--mid-gray); letter-spacing: 0.05em; }
-        .download-btn { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.1rem; border: 1px solid rgba(196, 163, 90, 0.3); border-radius: 4px; background: transparent; color: var(--accent); font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; cursor: pointer; transition: all 0.3s ease; }
-        .download-btn:hover { background: var(--accent); color: var(--black); border-color: var(--accent); }
-        .download-btn svg { width: 14px; height: 14px; }
+        .dl-group { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+        .dl-btn { display: flex; align-items: center; gap: 0.35rem; padding: 0.4rem 0.7rem; border: 1px solid rgba(196, 163, 90, 0.2); border-radius: 4px; background: transparent; color: var(--accent); font-family: 'Inter', sans-serif; font-size: 0.65rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; cursor: pointer; transition: all 0.3s ease; white-space: nowrap; }
+        .dl-btn:hover { background: var(--accent); color: var(--black); border-color: var(--accent); }
+        .dl-btn svg { width: 12px; height: 12px; }
 
         /* ── ABOUT SECTION ── */
         .about-section { max-width: 600px; margin: 0 auto; padding: 4rem 2rem; text-align: center; }
@@ -123,7 +124,7 @@
         /* ── RESPONSIVE ── */
         @media (max-width: 600px) {
             .track-item { flex-direction: column; align-items: flex-start; gap: 1rem; padding: 1.25rem; }
-            .download-btn { align-self: flex-end; }
+            .dl-group { align-self: flex-end; }
             .header { min-height: 40vh; }
             .cta-box { flex-direction: column; text-align: center; padding: 1.5rem; }
             .cta-text { text-align: center; }
@@ -203,7 +204,11 @@
                         <span class="track-meta">4:32 · Standard tuning · 120 BPM</span>
                     </div>
                 </div>
-                <a href="#" class="download-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg> Download</a>
+                <div class="dl-group">
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>No click</a>
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>With click</a>
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Click only</a>
+                </div>
             </div>
             <div class="track-item">
                 <div class="track-info">
@@ -213,7 +218,11 @@
                         <span class="track-meta">5:15 · Standard tuning · 90 BPM</span>
                     </div>
                 </div>
-                <a href="#" class="download-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg> Download</a>
+                <div class="dl-group">
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>No click</a>
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>With click</a>
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Click only</a>
+                </div>
             </div>
             <div class="track-item">
                 <div class="track-info">
@@ -223,7 +232,11 @@
                         <span class="track-meta">3:48 · Drop D · 110 BPM</span>
                     </div>
                 </div>
-                <a href="#" class="download-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg> Download</a>
+                <div class="dl-group">
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>No click</a>
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>With click</a>
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Click only</a>
+                </div>
             </div>
             <div class="track-item">
                 <div class="track-info">
@@ -233,7 +246,11 @@
                         <span class="track-meta">6:02 · Standard tuning · 85 BPM</span>
                     </div>
                 </div>
-                <a href="#" class="download-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg> Download</a>
+                <div class="dl-group">
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>No click</a>
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>With click</a>
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Click only</a>
+                </div>
             </div>
             <div class="track-item">
                 <div class="track-info">
@@ -243,7 +260,11 @@
                         <span class="track-meta">4:17 · Standard tuning · 130 BPM</span>
                     </div>
                 </div>
-                <a href="#" class="download-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg> Download</a>
+                <div class="dl-group">
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>No click</a>
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>With click</a>
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Click only</a>
+                </div>
             </div>
             <div class="track-item">
                 <div class="track-info">
@@ -253,7 +274,11 @@
                         <span class="track-meta">5:40 · Standard tuning · 100 BPM</span>
                     </div>
                 </div>
-                <a href="#" class="download-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg> Download</a>
+                <div class="dl-group">
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>No click</a>
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>With click</a>
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Click only</a>
+                </div>
             </div>
             <div class="track-item">
                 <div class="track-info">
@@ -263,7 +288,11 @@
                         <span class="track-meta">3:55 · Standard tuning · 140 BPM</span>
                     </div>
                 </div>
-                <a href="#" class="download-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg> Download</a>
+                <div class="dl-group">
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>No click</a>
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>With click</a>
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Click only</a>
+                </div>
             </div>
             <div class="track-item">
                 <div class="track-info">
@@ -273,7 +302,11 @@
                         <span class="track-meta">4:48 · Drop D · 95 BPM</span>
                     </div>
                 </div>
-                <a href="#" class="download-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg> Download</a>
+                <div class="dl-group">
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>No click</a>
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>With click</a>
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Click only</a>
+                </div>
             </div>
             <div class="track-item">
                 <div class="track-info">
@@ -283,7 +316,11 @@
                         <span class="track-meta">5:22 · Standard tuning · 115 BPM</span>
                     </div>
                 </div>
-                <a href="#" class="download-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg> Download</a>
+                <div class="dl-group">
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>No click</a>
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>With click</a>
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Click only</a>
+                </div>
             </div>
             <div class="track-item">
                 <div class="track-info">
@@ -293,7 +330,11 @@
                         <span class="track-meta">6:10 · Standard tuning · 75 BPM</span>
                     </div>
                 </div>
-                <a href="#" class="download-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg> Download</a>
+                <div class="dl-group">
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>No click</a>
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>With click</a>
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Click only</a>
+                </div>
             </div>
         </div>
     </section>
