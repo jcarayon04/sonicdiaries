@@ -101,8 +101,14 @@
         .video-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--white); margin-bottom: 0.5rem; }
         .video-desc { font-size: 0.8rem; color: var(--light-gray); }
         .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
-        .video-card { background: var(--near-black); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; overflow: hidden; transition: border-color 0.3s ease; }
+        .video-card { background: var(--near-black); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; overflow: hidden; transition: border-color 0.3s ease; cursor: pointer; position: relative; }
         .video-card:hover { border-color: rgba(196, 163, 90, 0.2); }
+        .video-thumb { width: 100%; aspect-ratio: 16/9; position: relative; overflow: hidden; }
+        .video-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
+        .video-card:hover .video-thumb img { transform: scale(1.03); }
+        .play-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 60px; height: 42px; background: rgba(255, 0, 0, 0.85); border-radius: 10px; display: flex; align-items: center; justify-content: center; transition: background 0.3s ease; }
+        .video-card:hover .play-btn { background: rgba(255, 0, 0, 1); }
+        .play-btn::after { content: ''; display: block; width: 0; height: 0; border-style: solid; border-width: 8px 0 8px 16px; border-color: transparent transparent transparent #fff; margin-left: 3px; }
         .video-embed { width: 100%; aspect-ratio: 16/9; }
 
         /* ── FOOTER ── */
@@ -352,19 +358,40 @@
             <p class="video-desc">Watch each piece performed by the composer</p>
         </div>
         <div class="video-grid">
-            <div class="video-card">
-                <div class="video-embed"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/x2Nkk1Xd7QE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+            <div class="video-card" onclick="playVideo(this, 'x2Nkk1Xd7QE')">
+                <div class="video-thumb">
+                    <img src="https://img.youtube.com/vi/x2Nkk1Xd7QE/maxresdefault.jpg" alt="Solar Overdrive" loading="lazy">
+                    <div class="play-btn"></div>
+                </div>
             </div>
-            <div class="video-card">
-                <div class="video-embed"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/7eyj5-LsxGQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+            <div class="video-card" onclick="playVideo(this, '7eyj5-LsxGQ')">
+                <div class="video-thumb">
+                    <img src="https://img.youtube.com/vi/7eyj5-LsxGQ/maxresdefault.jpg" alt="Neon Eclipse" loading="lazy">
+                    <div class="play-btn"></div>
+                </div>
             </div>
-            <div class="video-card">
-                <div class="video-embed"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/Xv1NCjbTaGs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+            <div class="video-card" onclick="playVideo(this, 'Xv1NCjbTaGs')">
+                <div class="video-thumb">
+                    <img src="https://img.youtube.com/vi/Xv1NCjbTaGs/maxresdefault.jpg" alt="Great Plains Crusher" loading="lazy">
+                    <div class="play-btn"></div>
+                </div>
             </div>
-            <div class="video-card">
-                <div class="video-embed"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/VI2R82sI1mE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+            <div class="video-card" onclick="playVideo(this, 'VI2R82sI1mE')">
+                <div class="video-thumb">
+                    <img src="https://img.youtube.com/vi/VI2R82sI1mE/maxresdefault.jpg" alt="Brand New Day" loading="lazy">
+                    <div class="play-btn"></div>
+                </div>
             </div>
         </div>
+        <script>
+        function playVideo(card, videoId) {
+            const thumb = card.querySelector('.video-thumb');
+            if (thumb) {
+                card.innerHTML = '<div class="video-embed"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/' + videoId + '?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>';
+                card.style.cursor = 'default';
+            }
+        }
+        </script>
     </section>
 
     <!-- ABOUT -->
