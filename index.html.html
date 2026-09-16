@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Sonic Diaries — Backing Tracks</title>
+
+    <!-- Open Graph / Social sharing -->
+    <meta property="og:title" content="Sonic Diaries — Official Backing Tracks">
+    <meta property="og:description" content="Free official backing tracks from the Sonic Diaries Songbook Volume 1 by Julien Carayon. Play along note for note or improvise freely.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sonicdiaries.com">
+    <!-- <meta property="og:image" content="https://sonicdiaries.com/og-image.jpg"> -->
+
+    <!-- Favicon placeholder -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎸</text></svg>">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --black: #000000; --near-black: #0a0a0a; --dark-gray: #141414;
+            --mid-gray: #666666; --light-gray: #999999; --off-white: #e8e8e8;
+            --white: #ffffff; --accent: #c4a35a; --accent-dim: rgba(196, 163, 90, 0.15);
+            --accent-hover: #d4b36a;
+        }
+
+        body { background-color: var(--black); color: var(--off-white); font-family: 'Inter', -apple-system, sans-serif; font-weight: 300; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+        /* ── LANG SWITCH ── */
+        .lang-switch { position: absolute; top: 1.5rem; right: 2rem; z-index: 10; display: flex; gap: 0.4rem; }
+        .lang-switch a { display: flex; align-items: center; text-decoration: none; padding: 0.3rem; border: 1px solid rgba(255,255,255,0.08); border-radius: 3px; transition: all 0.3s ease; opacity: 0.5; }
+        .lang-switch a.active { opacity: 1; border-color: rgba(196, 163, 90, 0.3); }
+        .lang-switch a:hover { opacity: 1; border-color: rgba(196, 163, 90, 0.3); }
+
+        /* ── HEADER ── */
+        .header { min-height: 50vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 2rem; position: relative; overflow: hidden; }
+        .header::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 600px; height: 600px; background: radial-gradient(circle, var(--accent-dim) 0%, transparent 70%); pointer-events: none; }
+        .logo-text { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 8vw, 6rem); font-weight: 600; color: var(--white); letter-spacing: 0.05em; position: relative; }
+        .subtitle { font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 400; letter-spacing: 0.35em; text-transform: uppercase; color: var(--accent); margin-top: 1rem; }
+        .tagline { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.15rem; color: var(--light-gray); margin-top: 2.5rem; max-width: 500px; }
+
+        /* ── SOCIAL LINKS (header) ── */
+        .social-links { display: flex; gap: 1rem; margin-top: 2rem; position: relative; z-index: 1; }
+        .social-links a { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.1); border-radius: 50%; transition: all 0.3s ease; }
+        .social-links a:hover { border-color: var(--accent); background: rgba(196, 163, 90, 0.1); }
+        .social-links a svg { width: 16px; height: 16px; fill: var(--light-gray); transition: fill 0.3s ease; }
+        .social-links a:hover svg { fill: var(--accent); }
+
+        .scroll-hint { position: absolute; bottom: 2rem; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; color: var(--mid-gray); font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; animation: pulse 2s ease-in-out infinite; }
+        .scroll-hint svg { width: 20px; height: 20px; stroke: var(--mid-gray); }
+        @keyframes pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+
+        /* ── DIVIDER ── */
+        .divider { width: 60px; height: 1px; background: var(--accent); margin: 0 auto; }
+
+        /* ── SONGBOOK CTA ── */
+        .cta-section { text-align: center; padding: 3rem 2rem; }
+        .cta-box { display: inline-flex; align-items: center; gap: 1.5rem; padding: 1.2rem 2rem; border: 1px solid rgba(196, 163, 90, 0.2); border-radius: 8px; background: rgba(196, 163, 90, 0.04); max-width: 600px; }
+        .cta-text { text-align: left; }
+        .cta-title { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--white); margin-bottom: 0.3rem; }
+        .cta-desc { font-size: 0.75rem; color: var(--light-gray); }
+        .cta-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.3rem; background: var(--accent); color: var(--black); font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; border-radius: 4px; white-space: nowrap; transition: background 0.3s ease; }
+        .cta-btn:hover { background: var(--accent-hover); }
+        .cta-btn svg { width: 14px; height: 14px; }
+
+        /* ── TRACKS SECTION ── */
+        .tracks-section { max-width: 720px; margin: 0 auto; padding: 2rem 2rem 4rem; }
+        .section-header { text-align: center; margin-bottom: 3rem; }
+        .section-title { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 400; color: var(--white); margin-bottom: 1rem; }
+        .section-desc { font-size: 0.85rem; color: var(--light-gray); max-width: 480px; margin: 0 auto; line-height: 1.8; }
+
+        /* ── TRACK CARDS ── */
+        .track-list { display: flex; flex-direction: column; gap: 1px; background: rgba(255, 255, 255, 0.03); border-radius: 8px; overflow: hidden; }
+        .track-item { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 1.5rem; background: var(--near-black); transition: background 0.3s ease; }
+        .track-item:hover { background: var(--dark-gray); }
+        .track-info { display: flex; align-items: center; gap: 1.25rem; }
+        .track-number { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; color: var(--accent); width: 2rem; text-align: center; }
+        .track-details { display: flex; flex-direction: column; gap: 0.2rem; }
+        .track-title { font-size: 0.95rem; font-weight: 400; color: var(--white); }
+        .track-meta { font-size: 0.75rem; color: var(--mid-gray); letter-spacing: 0.05em; }
+        .dl-group { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+        .dl-btn { display: flex; align-items: center; gap: 0.35rem; padding: 0.4rem 0.7rem; border: 1px solid rgba(196, 163, 90, 0.2); border-radius: 4px; background: transparent; color: var(--accent); font-family: 'Inter', sans-serif; font-size: 0.65rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; cursor: pointer; transition: all 0.3s ease; white-space: nowrap; }
+        .dl-btn:hover { background: var(--accent); color: var(--black); border-color: var(--accent); }
+        .dl-btn svg { width: 12px; height: 12px; }
+
+        /* ── ABOUT SECTION ── */
+        .about-section { max-width: 600px; margin: 0 auto; padding: 4rem 2rem; text-align: center; }
+        .about-section .divider { margin-bottom: 2rem; }
+        .about-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--white); margin-bottom: 1.5rem; }
+        .about-text { font-size: 0.85rem; color: var(--light-gray); line-height: 1.9; margin-bottom: 1.5rem; }
+        .about-badge { display: inline-block; padding: 0.5rem 1.2rem; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 100px; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); }
+
+        /* ── VIDEO SECTION ── */
+        .video-section { max-width: 720px; margin: 0 auto; padding: 2rem 2rem 4rem; }
+        .video-header { text-align: center; margin-bottom: 2rem; }
+        .video-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--white); margin-bottom: 0.5rem; }
+        .video-desc { font-size: 0.8rem; color: var(--light-gray); }
+        .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+        .video-card { background: var(--near-black); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; overflow: hidden; transition: border-color 0.3s ease; }
+        .video-card:hover { border-color: rgba(196, 163, 90, 0.2); }
+        .video-embed { width: 100%; aspect-ratio: 16/9; }
+
+        /* ── FOOTER ── */
+        .footer { text-align: center; padding: 3rem 2rem; border-top: 1px solid rgba(255, 255, 255, 0.04); }
+        .footer-social { display: flex; justify-content: center; gap: 1rem; margin-bottom: 1.5rem; }
+        .footer-social a { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border: 1px solid rgba(255,255,255,0.08); border-radius: 50%; transition: all 0.3s ease; }
+        .footer-social a:hover { border-color: var(--accent); }
+        .footer-social a svg { width: 14px; height: 14px; fill: var(--mid-gray); transition: fill 0.3s ease; }
+        .footer-social a:hover svg { fill: var(--accent); }
+        .footer p { font-size: 0.75rem; color: var(--mid-gray); line-height: 2; }
+        .footer a { color: var(--accent); text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
+        .footer-copy { margin-top: 1.5rem; font-size: 0.65rem; color: var(--mid-gray); opacity: 0.5; }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 600px) {
+            .track-item { flex-direction: column; align-items: flex-start; gap: 1rem; padding: 1.25rem; }
+            .dl-group { align-self: flex-end; }
+            .header { min-height: 40vh; }
+            .cta-box { flex-direction: column; text-align: center; padding: 1.5rem; }
+            .cta-text { text-align: center; }
+            .video-grid { grid-template-columns: 1fr; }
+        }
+        @media (prefers-reduced-motion: reduce) { .scroll-hint { animation: none; opacity: 0.6; } }
+    </style>
+</head>
+<body>
+
+    <!-- LANG SWITCH -->
+    <div class="lang-switch">
+        <a href="index.html" class="active" title="English">
+            <svg width="22" height="15" viewBox="0 0 22 15" fill="none"><rect width="22" height="15" rx="2" fill="#012169"/><path d="M0 0L22 15M22 0L0 15" stroke="#fff" stroke-width="2.5"/><path d="M0 0L22 15M22 0L0 15" stroke="#C8102E" stroke-width="1.2"/><path d="M11 0V15M0 7.5H22" stroke="#fff" stroke-width="4"/><path d="M11 0V15M0 7.5H22" stroke="#C8102E" stroke-width="2.2"/></svg>
+        </a>
+        <a href="fr.html" title="Français">
+            <svg width="22" height="15" viewBox="0 0 22 15" fill="none"><rect width="7.33" height="15" fill="#002395" rx="2"/><rect x="7.33" width="7.34" height="15" fill="#fff"/><rect x="14.67" width="7.33" height="15" fill="#ED2939" rx="2"/></svg>
+        </a>
+    </div>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="logo-text">Sonic Diaries</div>
+        <div class="subtitle">Backing Tracks</div>
+        <p class="tagline">Official backing tracks from the songbook — play along, note for note or improvise freely.</p>
+
+        <!-- Social links -->
+        <div class="social-links">
+            <a href="#" title="YouTube" aria-label="YouTube">
+                <svg viewBox="0 0 24 24"><path d="M23.5 6.2c-.3-1-1-1.8-2-2.1C19.6 3.5 12 3.5 12 3.5s-7.6 0-9.5.6c-1 .3-1.8 1-2 2.1C0 8.1 0 12 0 12s0 3.9.5 5.8c.3 1 1 1.8 2 2.1 1.9.6 9.5.6 9.5.6s7.6 0 9.5-.6c1-.3 1.8-1 2-2.1.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.5 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+            </a>
+            <a href="#" title="Spotify" aria-label="Spotify">
+                <svg viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm5.5 17.3c-.2.3-.6.4-1 .2-2.7-1.6-6-2-10-1.1-.4.1-.8-.2-.8-.6-.1-.4.2-.8.6-.8 4.3-1 8-0.6 11 1.2.3.2.4.7.2 1.1zm1.5-3.3c-.3.4-.8.5-1.2.3-3-1.9-7.7-2.4-11.3-1.3-.5.1-1-.1-1.1-.6-.1-.5.1-1 .6-1.1 4.1-1.3 9.2-.7 12.7 1.5.3.2.5.7.3 1.2zm.1-3.4c-3.7-2.2-9.7-2.4-13.2-1.3-.5.2-1.1-.1-1.3-.6-.2-.5.1-1.1.6-1.3 4-1.2 10.7-1 14.9 1.5.5.3.6.9.4 1.4-.3.4-.9.6-1.4.3z"/></svg>
+            </a>
+            <a href="#" title="Bandcamp" aria-label="Bandcamp">
+                <svg viewBox="0 0 24 24"><path d="M0 18.75l7.437-13.5H24l-7.438 13.5H0z"/></svg>
+            </a>
+            <a href="#" title="Instagram" aria-label="Instagram">
+                <svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1.1.4 2.2.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1.1.4-2.2.4-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1.1-.4-2.2-.1-1.3-.1-1.6-.1-4.8s0-3.6.1-4.8c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1.1-.4 2.2-.4 1.2-.1 1.6-.1 4.8-.1zM12 0C8.7 0 8.3 0 7.1.1 5.8.1 4.9.3 4.1.6c-.8.3-1.5.7-2.2 1.4C1.2 2.6.8 3.3.5 4.1.2 4.9.1 5.8 0 7.1 0 8.3 0 8.7 0 12s0 3.7.1 4.9c.1 1.3.2 2.2.5 2.9.3.8.7 1.5 1.4 2.2.7.7 1.4 1.1 2.2 1.4.8.3 1.6.5 2.9.5C8.3 24 8.7 24 12 24s3.7 0 4.9-.1c1.3-.1 2.2-.2 2.9-.5.8-.3 1.5-.7 2.2-1.4.7-.7 1.1-1.4 1.4-2.2.3-.8.5-1.6.5-2.9.1-1.2.1-1.6.1-4.9s0-3.7-.1-4.9c-.1-1.3-.2-2.2-.5-2.9-.3-.8-.7-1.5-1.4-2.2C21.4 1.3 20.7.9 19.9.6 19.1.3 18.2.1 16.9.1 15.7 0 15.3 0 12 0zm0 5.8a6.2 6.2 0 100 12.4A6.2 6.2 0 0012 5.8zm0 10.2a4 4 0 110-8 4 4 0 010 8zm6.4-10.5a1.4 1.4 0 110-2.9 1.4 1.4 0 010 2.9z"/></svg>
+            </a>
+        </div>
+
+        <div class="scroll-hint">
+            <span>Scroll</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        </div>
+    </header>
+
+    <!-- SONGBOOK CTA -->
+    <section class="cta-section">
+        <div class="cta-box">
+            <div class="cta-text">
+                <div class="cta-title">Songbook Volume 1</div>
+                <div class="cta-desc">Complete guitar &amp; bass transcriptions — notation + tablature.<br>Transcribed by the composer.</div>
+            </div>
+            <a href="#" class="cta-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
+                Get on Amazon
+            </a>
+        </div>
+    </section>
+
+    <!-- TRACKS -->
+    <section class="tracks-section">
+        <div class="section-header">
+            <div class="divider" style="margin-bottom: 2rem;"></div>
+            <h2 class="section-title">Volume 1</h2>
+            <p class="section-desc">Each backing track matches a piece from the songbook.<br>Hit play, open the score, and play along.</p>
+            <div style="margin-top: 1.5rem; padding: 1rem 1.5rem; border: 1px solid rgba(255,255,255,0.06); border-radius: 6px; text-align: left; max-width: 520px; margin-left: auto; margin-right: auto;">
+                <div style="font-size: 0.75rem; font-weight: 500; color: #c4a35a; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.6rem;">Three versions per track</div>
+                <div style="font-size: 0.78rem; color: #999; line-height: 1.7;">
+                    <strong style="color: #e8e8e8;">No click</strong> — Full backing track, no metronome. For playing freely once you know the piece.<br>
+                    <strong style="color: #e8e8e8;">With click</strong> — Backing track with embedded click. For learning and staying locked to the tempo changes.<br>
+                    <strong style="color: #e8e8e8;">Click only</strong> — Metronome only, following all tempo variations of the piece. For practicing with the score alone.
+                </div>
+                <div style="font-size: 0.7rem; color: #666; margin-top: 0.6rem; font-style: italic;">Note: these tracks feature tempo changes throughout — the click follows every variation, which a standard metronome cannot replicate.</div>
+            </div>
+        </div>
+
+        <div class="track-list">
+            <div class="track-item">
+                <div class="track-info">
+                    <span class="track-number">1</span>
+                    <div class="track-details">
+                        <span class="track-title">Brand New Day</span>
+                        <span class="track-meta">4:32 · Standard tuning · 120 BPM</span>
+                    </div>
+                </div>
+                <div class="dl-group">
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>No click</a>
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>With click</a>
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Click only</a>
+                </div>
+            </div>
+            <div class="track-item">
+                <div class="track-info">
+                    <span class="track-number">2</span>
+                    <div class="track-details">
+                        <span class="track-title">Track title 2</span>
+                        <span class="track-meta">5:15 · Standard tuning · 90 BPM</span>
+                    </div>
+                </div>
+                <div class="dl-group">
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>No click</a>
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>With click</a>
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Click only</a>
+                </div>
+            </div>
+            <div class="track-item">
+                <div class="track-info">
+                    <span class="track-number">3</span>
+                    <div class="track-details">
+                        <span class="track-title">Track title 3</span>
+                        <span class="track-meta">3:48 · Drop D · 110 BPM</span>
+                    </div>
+                </div>
+                <div class="dl-group">
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>No click</a>
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>With click</a>
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Click only</a>
+                </div>
+            </div>
+            <div class="track-item">
+                <div class="track-info">
+                    <span class="track-number">4</span>
+                    <div class="track-details">
+                        <span class="track-title">Track title 4</span>
+                        <span class="track-meta">6:02 · Standard tuning · 85 BPM</span>
+                    </div>
+                </div>
+                <div class="dl-group">
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>No click</a>
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>With click</a>
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Click only</a>
+                </div>
+            </div>
+            <div class="track-item">
+                <div class="track-info">
+                    <span class="track-number">5</span>
+                    <div class="track-details">
+                        <span class="track-title">Track title 5</span>
+                        <span class="track-meta">4:17 · Standard tuning · 130 BPM</span>
+                    </div>
+                </div>
+                <div class="dl-group">
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>No click</a>
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>With click</a>
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Click only</a>
+                </div>
+            </div>
+            <div class="track-item">
+                <div class="track-info">
+                    <span class="track-number">6</span>
+                    <div class="track-details">
+                        <span class="track-title">Track title 6</span>
+                        <span class="track-meta">5:40 · Standard tuning · 100 BPM</span>
+                    </div>
+                </div>
+                <div class="dl-group">
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>No click</a>
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>With click</a>
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Click only</a>
+                </div>
+            </div>
+            <div class="track-item">
+                <div class="track-info">
+                    <span class="track-number">7</span>
+                    <div class="track-details">
+                        <span class="track-title">Track title 7</span>
+                        <span class="track-meta">3:55 · Standard tuning · 140 BPM</span>
+                    </div>
+                </div>
+                <div class="dl-group">
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>No click</a>
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>With click</a>
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Click only</a>
+                </div>
+            </div>
+            <div class="track-item">
+                <div class="track-info">
+                    <span class="track-number">8</span>
+                    <div class="track-details">
+                        <span class="track-title">Track title 8</span>
+                        <span class="track-meta">4:48 · Drop D · 95 BPM</span>
+                    </div>
+                </div>
+                <div class="dl-group">
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>No click</a>
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>With click</a>
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Click only</a>
+                </div>
+            </div>
+            <div class="track-item">
+                <div class="track-info">
+                    <span class="track-number">9</span>
+                    <div class="track-details">
+                        <span class="track-title">Track title 9</span>
+                        <span class="track-meta">5:22 · Standard tuning · 115 BPM</span>
+                    </div>
+                </div>
+                <div class="dl-group">
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>No click</a>
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>With click</a>
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Click only</a>
+                </div>
+            </div>
+            <div class="track-item">
+                <div class="track-info">
+                    <span class="track-number">10</span>
+                    <div class="track-details">
+                        <span class="track-title">Track title 10</span>
+                        <span class="track-meta">6:10 · Standard tuning · 75 BPM</span>
+                    </div>
+                </div>
+                <div class="dl-group">
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>No click</a>
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>With click</a>
+                    <a href="#" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Click only</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PLAYTHROUGH VIDEOS -->
+    <section class="video-section">
+        <div class="video-header">
+            <div class="divider" style="margin-bottom: 2rem;"></div>
+            <h2 class="video-title">Playthrough Videos</h2>
+            <p class="video-desc">Watch each piece performed by the composer</p>
+        </div>
+        <div class="video-grid">
+            <div class="video-card">
+                <div class="video-embed"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/x2Nkk1Xd7QE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+            </div>
+            <div class="video-card">
+                <div class="video-embed"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/7eyj5-LsxGQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+            </div>
+            <div class="video-card">
+                <div class="video-embed"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/Xv1NCjbTaGs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+            </div>
+            <div class="video-card">
+                <div class="video-embed"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/VI2R82sI1mE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about-section">
+        <div class="divider"></div>
+        <h2 class="about-title">About Sonic Diaries</h2>
+        <p class="about-text">
+            Sonic Diaries is the instrumental guitar project of Julien Carayon — a self-taught guitarist with 30 years of experience, blending progressive rock, fusion, and modal harmony into cinematic compositions. Every note in this songbook has been transcribed and validated by the composer himself.
+        </p>
+        <div class="about-badge">Transcribed by the composer</div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-social">
+            <a href="#" title="YouTube" aria-label="YouTube">
+                <svg viewBox="0 0 24 24"><path d="M23.5 6.2c-.3-1-1-1.8-2-2.1C19.6 3.5 12 3.5 12 3.5s-7.6 0-9.5.6c-1 .3-1.8 1-2 2.1C0 8.1 0 12 0 12s0 3.9.5 5.8c.3 1 1 1.8 2 2.1 1.9.6 9.5.6 9.5.6s7.6 0 9.5-.6c1-.3 1.8-1 2-2.1.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.5 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+            </a>
+            <a href="#" title="Spotify" aria-label="Spotify">
+                <svg viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm5.5 17.3c-.2.3-.6.4-1 .2-2.7-1.6-6-2-10-1.1-.4.1-.8-.2-.8-.6-.1-.4.2-.8.6-.8 4.3-1 8-0.6 11 1.2.3.2.4.7.2 1.1zm1.5-3.3c-.3.4-.8.5-1.2.3-3-1.9-7.7-2.4-11.3-1.3-.5.1-1-.1-1.1-.6-.1-.5.1-1 .6-1.1 4.1-1.3 9.2-.7 12.7 1.5.3.2.5.7.3 1.2zm.1-3.4c-3.7-2.2-9.7-2.4-13.2-1.3-.5.2-1.1-.1-1.3-.6-.2-.5.1-1.1.6-1.3 4-1.2 10.7-1 14.9 1.5.5.3.6.9.4 1.4-.3.4-.9.6-1.4.3z"/></svg>
+            </a>
+            <a href="#" title="Bandcamp" aria-label="Bandcamp">
+                <svg viewBox="0 0 24 24"><path d="M0 18.75l7.437-13.5H24l-7.438 13.5H0z"/></svg>
+            </a>
+            <a href="#" title="Instagram" aria-label="Instagram">
+                <svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1.1.4 2.2.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1.1.4-2.2.4-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1.1-.4-2.2-.1-1.3-.1-1.6-.1-4.8s0-3.6.1-4.8c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1.1-.4 2.2-.4 1.2-.1 1.6-.1 4.8-.1zM12 0C8.7 0 8.3 0 7.1.1 5.8.1 4.9.3 4.1.6c-.8.3-1.5.7-2.2 1.4C1.2 2.6.8 3.3.5 4.1.2 4.9.1 5.8 0 7.1 0 8.3 0 8.7 0 12s0 3.7.1 4.9c.1 1.3.2 2.2.5 2.9.3.8.7 1.5 1.4 2.2.7.7 1.4 1.1 2.2 1.4.8.3 1.6.5 2.9.5C8.3 24 8.7 24 12 24s3.7 0 4.9-.1c1.3-.1 2.2-.2 2.9-.5.8-.3 1.5-.7 2.2-1.4.7-.7 1.1-1.4 1.4-2.2.3-.8.5-1.6.5-2.9.1-1.2.1-1.6.1-4.9s0-3.7-.1-4.9c-.1-1.3-.2-2.2-.5-2.9-.3-.8-.7-1.5-1.4-2.2C21.4 1.3 20.7.9 19.9.6 19.1.3 18.2.1 16.9.1 15.7 0 15.3 0 12 0zm0 5.8a6.2 6.2 0 100 12.4A6.2 6.2 0 0012 5.8zm0 10.2a4 4 0 110-8 4 4 0 010 8zm6.4-10.5a1.4 1.4 0 110-2.9 1.4 1.4 0 010 2.9z"/></svg>
+            </a>
+        </div>
+        <p>
+            Sonic Diaries — Julien Carayon<br>
+            Backing tracks from the <a href="#">Songbook Volume 1</a> — available on Amazon
+        </p>
+        <div class="footer-copy">© 2026 Julien Carayon. All rights reserved.</div>
+    </footer>
+
+</body>
+</html>
