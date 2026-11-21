@@ -47,14 +47,16 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:6
 @media (max-width:720px){.navlinks a:not(.lang){display:none}}
 
 /* ---------- Hero : bannière granit ---------- */
-.hero{position:relative;text-align:center;border-bottom:1px solid var(--line);background:radial-gradient(ellipse at 50% 0%,rgba(201,162,74,.08),transparent 60%),var(--bg)}
-.banner{width:100%;overflow:hidden;background:#000}
+.hero{position:relative;text-align:center;border-bottom:1px solid var(--line);background:linear-gradient(to bottom,#000 0%,#000 60%,var(--bg) 100%)}
+.banner{position:relative;width:100%;overflow:hidden;background:#000}
+.banner::after{content:"";position:absolute;left:0;right:0;bottom:0;height:10%;background:linear-gradient(to bottom,transparent,#000);pointer-events:none}
 .banner img{width:100%;height:auto;display:block}
 @media (max-width:720px){.banner img{height:120px;object-fit:cover;object-position:43% 50%}}
 .hero-inner{position:relative;padding:44px 24px 64px}
 .eyebrow{font-size:.75rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)}
 .hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(2.4rem,6vw,4.2rem);line-height:1;letter-spacing:.06em;margin:14px 0 10px;color:#e4dfd5}
 .hero p{font-family:var(--serif);font-style:italic;font-size:clamp(1.15rem,2.4vw,1.45rem);color:var(--muted)}
+.hero .intro{max-width:56ch;margin:22px auto 0;font-family:var(--sans);font-style:normal;font-size:1rem;line-height:1.7;color:#bdb7ac}
 .hero .cta{margin-top:30px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 
 /* ---------- Boutons ---------- */
@@ -160,6 +162,7 @@ footer a:hover{color:var(--gold-2)}
     <div class="eyebrow">Julien Carayon</div>
     <h1>Sonic Diaries</h1>
     <p>Instrumental guitar music</p>
+    <p class="intro">Sonic Diaries is an independent instrumental guitar project: stories told without words, one track at a time. Every piece is composed, played and produced by Julien Carayon.</p>
     <div class="cta">
       <a class="btn primary" href="#latest">Latest release</a>
       <a class="btn" href="https://julien-carayon.bandcamp.com" target="_blank" rel="noopener">Bandcamp</a>
