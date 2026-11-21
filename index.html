@@ -101,10 +101,14 @@ h2{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,4.5vw,2.8rem);l
 .note{font-size:.72rem;color:#6d685f;margin-top:8px}
 
 /* Discographie */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:18px}
 .tile .cover{padding:16px;transition:border-color .2s,transform .2s}
 .tile:hover .cover{border-color:var(--gold);transform:translateY(-3px)}
 .tile .cover .ct{font-size:1.2rem}
+img.cover,.tile img.cover{padding:0;width:100%;height:auto;object-fit:cover;background:var(--surface)}
+.tile .cap{margin-top:10px;font-family:var(--serif);font-weight:600;font-size:1.1rem;line-height:1.2}
+.tile .cap small{display:block;font-family:var(--sans);font-weight:400;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:3px}
+.tile:hover .cap{color:var(--gold-2)}
 
 /* Vidéos */
 .videos{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
@@ -171,10 +175,7 @@ footer a:hover{color:var(--gold-2)}
 <!-- ============ DERNIÈRE SORTIE — le seul bloc à mettre à jour à chaque sortie ============ -->
 <section id="latest">
   <div class="wrap latest">
-    <!-- À FAIRE : remplacer ce bloc par <img src="img/ghost-reverie.jpg" alt="Ghost Reverie cover" class="cover"> -->
-    <div class="cover" style="background:radial-gradient(circle at 30% 25%,#3a3f4a,#15171c 55%,#0b0b0d)">
-      <div class="ct">Ghost Reverie<small>Cover art</small></div>
-    </div>
+    <img class="cover" src="img/ghost-reverie.webp" alt="Ghost Reverie — cover art" width="800" height="800">
     <div>
       <div class="label">Latest release</div>
       <h3>Ghost Reverie</h3>
@@ -201,21 +202,26 @@ footer a:hover{color:var(--gold-2)}
     <div class="label">Discography</div>
     <h2>All releases</h2>
     <div class="grid">
-      <!-- Chaque tuile mènera plus tard à sa page de sortie (ex. /ghost-reverie/). Pochettes à mettre dans img/ -->
+      <!-- Chaque tuile mènera plus tard à sa page de sortie (ex. /ghost-reverie/). Pochettes : dossier img/, 800×800 en .webp -->
       <a class="tile" href="https://julien-carayon.bandcamp.com" target="_blank" rel="noopener">
-        <div class="cover" style="background:radial-gradient(circle at 30% 25%,#3a3f4a,#15171c 55%,#0b0b0d)"><div class="ct">Ghost Reverie<small>2026</small></div></div>
+        <img class="cover" src="img/ghost-reverie.webp" alt="Ghost Reverie — cover art" width="800" height="800" loading="lazy">
+        <div class="cap">Ghost Reverie<small>2026</small></div>
       </a>
       <a class="tile" href="https://julien-carayon.bandcamp.com" target="_blank" rel="noopener">
-        <div class="cover" style="background:radial-gradient(circle at 70% 20%,#c9874a,#4a2a1a 50%,#120b08)"><div class="ct">Brand New Day<small>2026</small></div></div>
+        <img class="cover" src="img/brand-new-day.webp" alt="Brand New Day — cover art" width="800" height="800" loading="lazy">
+        <div class="cap">Brand New Day<small>2026</small></div>
       </a>
       <a class="tile" href="https://julien-carayon.bandcamp.com" target="_blank" rel="noopener">
-        <div class="cover" style="background:radial-gradient(circle at 40% 30%,#6b6248,#2a2719 55%,#0d0c08)"><div class="ct">Great Plains Crusher<small>2026</small></div></div>
+        <img class="cover" src="img/great-plains-crusher.webp" alt="Great Plains Crusher — cover art" width="800" height="800" loading="lazy">
+        <div class="cap">Great Plains Crusher<small>2026</small></div>
       </a>
       <a class="tile" href="https://julien-carayon.bandcamp.com" target="_blank" rel="noopener">
-        <div class="cover" style="background:radial-gradient(circle at 60% 35%,#5a3a7a,#1e1430 55%,#0a0810)"><div class="ct">Neon Eclipse<small>Single</small></div></div>
+        <img class="cover" src="img/neon-eclipse.webp" alt="Neon Eclipse — cover art" width="800" height="800" loading="lazy">
+        <div class="cap">Neon Eclipse<small>Single</small></div>
       </a>
       <a class="tile" href="https://julien-carayon.bandcamp.com" target="_blank" rel="noopener">
-        <div class="cover" style="background:radial-gradient(circle at 50% 30%,#d9a03a,#6a3510 50%,#120805)"><div class="ct">Solar Overdrive<small>Single</small></div></div>
+        <img class="cover" src="img/solar-overdrive.webp" alt="Solar Overdrive — cover art" width="800" height="800" loading="lazy">
+        <div class="cap">Solar Overdrive<small>Single</small></div>
       </a>
     </div>
   </div>
