@@ -73,7 +73,7 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:6
 .btn svg{width:14px;height:14px;flex:none}
 
 /* ---------- Sections ---------- */
-section{padding:88px 0;border-bottom:1px solid var(--line)}
+section{scroll-margin-top:60px;padding:88px 0;border-bottom:1px solid var(--line)}
 .label{font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
 h2{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,4.5vw,2.8rem);line-height:1.1;margin-bottom:34px}
 
@@ -145,6 +145,40 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:20px 34px;justify-content:space-bet
 footer .flinks{display:flex;flex-wrap:wrap;gap:22px}
 footer a:hover{color:var(--gold-2)}
 .soon{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:#6d685f;margin-left:4px}
+
+/* Carrousel des sorties : 3 cartes visibles (2 sur tablette, 1 sur téléphone) */
+.car-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:30px}
+.car-head h2{margin:0}
+.car-nav{display:flex;gap:10px}
+.car-btn{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color .2s,color .2s,opacity .2s}
+.car-btn:hover{border-color:var(--gold);color:var(--gold-2)}
+.car-btn:disabled{opacity:.3;cursor:default;border-color:var(--line);color:var(--text)}
+.car-btn svg{width:13px;height:13px}
+.car-track{--gap:24px;display:flex;gap:var(--gap);overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;-webkit-overflow-scrolling:touch;outline:none;padding:4px 2px 6px}
+.car-track::-webkit-scrollbar{display:none}
+.card-rel{flex:0 0 calc((100% - 2*var(--gap))/3);scroll-snap-align:start;display:flex;flex-direction:column;border-radius:4px;transition:box-shadow .4s}
+@media (max-width:900px){.card-rel{flex-basis:calc((100% - var(--gap))/2)}}
+@media (max-width:600px){.car-track{--gap:16px}.card-rel{flex-basis:86%}}
+.card-rel.flash{box-shadow:0 0 0 1px var(--gold)}
+.cov{position:relative;display:block;aspect-ratio:1;border:1px solid var(--line);border-radius:4px;overflow:hidden;background:var(--surface);transition:border-color .2s}
+.cov img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.cov:hover{border-color:var(--gold)}
+.cov:hover img{transform:scale(1.03)}
+.new{display:inline-block;vertical-align:middle;margin-left:8px;background:var(--gold);color:#111;font-family:var(--sans);font-size:.62rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;padding:4px 8px;border-radius:2px;position:relative;top:-3px}
+.card-rel h3{font-family:var(--serif);font-weight:600;font-size:1.7rem;line-height:1.1;margin-top:18px}
+.card-rel .meta{color:var(--muted);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;margin:8px 0 10px}
+.card-rel .desc{color:#cfcac0;font-size:.9rem;line-height:1.55;margin-bottom:18px;flex:1}
+.btn.full{justify-content:center;width:100%}
+.minis{display:flex;gap:8px;margin-top:8px}
+.btn.sm{flex:1;justify-content:center;padding:9px 4px;font-size:.78rem;white-space:nowrap}
+@media (max-width:600px){.btn.sm{font-size:.72rem}}
+.facade.mini{height:42px;margin-top:8px;justify-content:flex-start;gap:10px;padding:0 12px;font-size:.8rem}
+.facade.mini .play{width:26px;height:26px;margin:0}
+.facade.mini .play svg{width:9px;height:9px;margin-left:2px}
+.dots{display:flex;justify-content:center;gap:8px;margin-top:26px}
+.dots button{width:8px;height:8px;padding:0;border-radius:50%;border:0;background:var(--line);cursor:pointer;transition:background .2s,transform .2s}
+.dots button.on{background:var(--gold);transform:scale(1.25)}
+#music .note{text-align:center}
 </style>
 </head>
 <body>
@@ -170,7 +204,7 @@ footer a:hover{color:var(--gold-2)}
     <p>Instrumental guitar music</p>
     <p class="intro">Sonic Diaries is an independent instrumental guitar project: stories told without words, one track at a time. Every piece is composed, played and produced by Julien Carayon.</p>
     <div class="cta">
-      <a class="btn primary" href="#latest">Latest release</a>
+      <a class="btn primary" href="#music">Latest release</a>
       <a class="btn" href="https://julien-carayon.bandcamp.com" target="_blank" rel="noopener">Bandcamp</a>
     </div>
   </div>
@@ -178,58 +212,75 @@ footer a:hover{color:var(--gold-2)}
 
 <main>
 
-<!-- ============ DERNIÈRE SORTIE — le seul bloc à mettre à jour à chaque sortie ============ -->
-<section id="latest">
-  <div class="wrap latest">
-    <img class="cover" src="img/ghost-reverie.webp" alt="Ghost Reverie — cover art" width="800" height="800">
-    <div>
-      <div class="label">Latest release</div>
-      <h3>Ghost Reverie</h3>
-      <div class="meta">Single · November 2026 · 80 BPM</div>
-      <p class="desc">A slow, haunting instrumental. <!-- À FAIRE : ta vraie phrase d'accroche --></p>
-      <div class="btnrow">
-        <a class="btn primary" href="https://julien-carayon.bandcamp.com/album/ghost-reverie" target="_blank" rel="noopener">Buy on Bandcamp</a>
-        <a class="btn" href="https://open.spotify.com/artist/27TAzzGmpJ8daUuZbbUHwj" target="_blank" rel="noopener">Spotify</a>
-        <a class="btn" href="https://music.apple.com/artist/julien-carayon/255318041" target="_blank" rel="noopener">Apple Music</a>
-        <a class="btn" href="https://www.youtube.com/watch?v=lBZGCIg6cEI" target="_blank" rel="noopener">YouTube</a>
-      </div>
-      <!-- Lecteur Bandcamp : se charge seulement au clic. À chaque sortie, remplacer le numéro album=… (code Share / Embed de Bandcamp) -->
-      <div class="facade audio" data-embed="https://bandcamp.com/EmbeddedPlayer/album=2997327074/size=large/bgcol=131313/linkcol=c9a24a/tracklist=false/artwork=none/transparent=true/" role="button" tabindex="0" aria-label="Load the Bandcamp player">
-        <div class="inner"><div class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></div>Listen here — loads the Bandcamp player</div>
-      </div>
-      <div class="note">Clicking loads content from Bandcamp.</div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ DISCOGRAPHIE ============ -->
+<!-- ============ MUSIQUE : carrousel des sorties (3 cartes visibles) ============
+     Nouvelle sortie : copier un bloc <article class="card-rel"> EN PREMIER et déplacer le badge « New ».
+     Lecteur : numéro track=… ou album=… (Bandcamp → Share / Embed). -->
 <section id="music">
   <div class="wrap">
-    <div class="label">Discography</div>
-    <h2>All releases</h2>
-    <div class="grid">
-      <!-- Chaque tuile mènera plus tard à sa page de sortie (ex. /ghost-reverie/). Pochettes : dossier img/, 800×800 en .webp -->
-      <a class="tile" href="https://julien-carayon.bandcamp.com/album/ghost-reverie" target="_blank" rel="noopener">
-        <img class="cover" src="img/ghost-reverie.webp" alt="Ghost Reverie — cover art" width="800" height="800" loading="lazy">
-        <div class="cap">Ghost Reverie<small>2026</small></div>
-      </a>
-      <a class="tile" href="https://julien-carayon.bandcamp.com" target="_blank" rel="noopener">
-        <img class="cover" src="img/brand-new-day.webp" alt="Brand New Day — cover art" width="800" height="800" loading="lazy">
-        <div class="cap">Brand New Day<small>2026</small></div>
-      </a>
-      <a class="tile" href="https://julien-carayon.bandcamp.com" target="_blank" rel="noopener">
-        <img class="cover" src="img/great-plains-crusher.webp" alt="Great Plains Crusher — cover art" width="800" height="800" loading="lazy">
-        <div class="cap">Great Plains Crusher<small>2026</small></div>
-      </a>
-      <a class="tile" href="https://julien-carayon.bandcamp.com" target="_blank" rel="noopener">
-        <img class="cover" src="img/neon-eclipse.webp" alt="Neon Eclipse — cover art" width="800" height="800" loading="lazy">
-        <div class="cap">Neon Eclipse<small>Single</small></div>
-      </a>
-      <a class="tile" href="https://julien-carayon.bandcamp.com" target="_blank" rel="noopener">
-        <img class="cover" src="img/solar-overdrive.webp" alt="Solar Overdrive — cover art" width="800" height="800" loading="lazy">
-        <div class="cap">Solar Overdrive<small>Single</small></div>
-      </a>
+    <div class="label">Music</div>
+    <div class="car-head"><h2>Releases</h2>
+      <div class="car-nav">
+        <button class="car-btn" data-dir="-1" aria-label="Previous release"><svg viewBox="0 0 12 12"><path d="M8 1L3 6l5 5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
+        <button class="car-btn" data-dir="1" aria-label="Next release"><svg viewBox="0 0 12 12"><path d="M4 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button></div></div>
+    <div class="car-track" tabindex="0">
+      <article class="card-rel" id="ghost-reverie">
+        <a class="cov" href="https://julien-carayon.bandcamp.com/album/ghost-reverie" target="_blank" rel="noopener"><img src="img/ghost-reverie.webp" alt="Ghost Reverie — cover art" width="800" height="800"></a>
+        <h3>Ghost Reverie <span class="new">New</span></h3>
+        <div class="meta">November 2026 · 80 BPM</div>
+        <p class="desc">A slow, haunting instrumental.</p>
+        <a class="btn primary full" href="https://julien-carayon.bandcamp.com/album/ghost-reverie" target="_blank" rel="noopener">Buy on Bandcamp</a>
+        <div class="minis"><a class="btn sm" href="https://open.spotify.com/artist/27TAzzGmpJ8daUuZbbUHwj" target="_blank" rel="noopener">Spotify</a><a class="btn sm" href="https://music.apple.com/artist/julien-carayon/255318041" target="_blank" rel="noopener">Apple Music</a><a class="btn sm" href="https://www.youtube.com/watch?v=lBZGCIg6cEI" target="_blank" rel="noopener">YouTube</a></div>
+        <div class="facade mini" data-embed="https://bandcamp.com/EmbeddedPlayer/album=2997327074/size=small/bgcol=333333/linkcol=c9a24a/transparent=true/" role="button" tabindex="0" aria-label="Load the Bandcamp player for Ghost Reverie">
+          <div class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></div><span>Listen</span>
+        </div>
+      </article>
+      <article class="card-rel" id="brand-new-day">
+        <a class="cov" href="https://julien-carayon.bandcamp.com/track/brand-new-day" target="_blank" rel="noopener"><img src="img/brand-new-day.webp" alt="Brand New Day — cover art" width="800" height="800"></a>
+        <h3>Brand New Day</h3>
+        <div class="meta">September 2026 · 120 BPM</div>
+        <p class="desc">Clean guitar tones, generous chorus and a subtle nod to the 80s. A way to make summer last a little longer.</p>
+        <a class="btn primary full" href="https://julien-carayon.bandcamp.com/track/brand-new-day" target="_blank" rel="noopener">Buy on Bandcamp</a>
+        <div class="minis"><a class="btn sm" href="https://open.spotify.com/artist/27TAzzGmpJ8daUuZbbUHwj" target="_blank" rel="noopener">Spotify</a><a class="btn sm" href="https://music.apple.com/artist/julien-carayon/255318041" target="_blank" rel="noopener">Apple Music</a></div>
+        <div class="facade mini" data-embed="https://bandcamp.com/EmbeddedPlayer/track=1738254884/size=small/bgcol=333333/linkcol=c9a24a/transparent=true/" role="button" tabindex="0" aria-label="Load the Bandcamp player for Brand New Day">
+          <div class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></div><span>Listen</span>
+        </div>
+      </article>
+      <article class="card-rel" id="great-plains-crusher">
+        <a class="cov" href="https://julien-carayon.bandcamp.com/track/great-plains-crusher" target="_blank" rel="noopener"><img src="img/great-plains-crusher.webp" alt="Great Plains Crusher — cover art" width="800" height="800"></a>
+        <h3>Great Plains Crusher</h3>
+        <div class="meta">July 2026 · 94 BPM</div>
+        <p class="desc">A skull-faced locomotive crushing everything in its path: heavy classic-metal riffs and a train whistle played on guitar.</p>
+        <a class="btn primary full" href="https://julien-carayon.bandcamp.com/track/great-plains-crusher" target="_blank" rel="noopener">Buy on Bandcamp</a>
+        <div class="minis"><a class="btn sm" href="https://open.spotify.com/artist/27TAzzGmpJ8daUuZbbUHwj" target="_blank" rel="noopener">Spotify</a><a class="btn sm" href="https://music.apple.com/artist/julien-carayon/255318041" target="_blank" rel="noopener">Apple Music</a><a class="btn sm" href="https://www.youtube.com/watch?v=Xv1NCjbTaGs" target="_blank" rel="noopener">YouTube</a></div>
+        <div class="facade mini" data-embed="https://bandcamp.com/EmbeddedPlayer/track=3808561244/size=small/bgcol=333333/linkcol=c9a24a/transparent=true/" role="button" tabindex="0" aria-label="Load the Bandcamp player for Great Plains Crusher">
+          <div class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></div><span>Listen</span>
+        </div>
+      </article>
+      <article class="card-rel" id="neon-eclipse">
+        <a class="cov" href="https://julien-carayon.bandcamp.com/track/neon-eclipse" target="_blank" rel="noopener"><img src="img/neon-eclipse.webp" alt="Neon Eclipse — cover art" width="800" height="800" loading="lazy"></a>
+        <h3>Neon Eclipse</h3>
+        <div class="meta">May 2026 · 106 BPM</div>
+        <p class="desc">A hypnotic journey through cosmic shadows, floating pads and a delay-soaked outro.</p>
+        <a class="btn primary full" href="https://julien-carayon.bandcamp.com/track/neon-eclipse" target="_blank" rel="noopener">Buy on Bandcamp</a>
+        <div class="minis"><a class="btn sm" href="https://open.spotify.com/artist/27TAzzGmpJ8daUuZbbUHwj" target="_blank" rel="noopener">Spotify</a><a class="btn sm" href="https://music.apple.com/artist/julien-carayon/255318041" target="_blank" rel="noopener">Apple Music</a></div>
+        <div class="facade mini" data-embed="https://bandcamp.com/EmbeddedPlayer/track=968307994/size=small/bgcol=333333/linkcol=c9a24a/transparent=true/" role="button" tabindex="0" aria-label="Load the Bandcamp player for Neon Eclipse">
+          <div class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></div><span>Listen</span>
+        </div>
+      </article>
+      <article class="card-rel" id="solar-overdrive">
+        <a class="cov" href="https://julien-carayon.bandcamp.com/track/solar-overdrive" target="_blank" rel="noopener"><img src="img/solar-overdrive.webp" alt="Solar Overdrive — cover art" width="800" height="800" loading="lazy"></a>
+        <h3>Solar Overdrive</h3>
+        <div class="meta">March 2026 · 184 BPM</div>
+        <p class="desc">A fast-paced instrumental rock track with jazzy touches, evoking open roads, sunshine and freedom.</p>
+        <a class="btn primary full" href="https://julien-carayon.bandcamp.com/track/solar-overdrive" target="_blank" rel="noopener">Buy on Bandcamp</a>
+        <div class="minis"><a class="btn sm" href="https://open.spotify.com/artist/27TAzzGmpJ8daUuZbbUHwj" target="_blank" rel="noopener">Spotify</a><a class="btn sm" href="https://music.apple.com/artist/julien-carayon/255318041" target="_blank" rel="noopener">Apple Music</a></div>
+        <div class="facade mini" data-embed="https://bandcamp.com/EmbeddedPlayer/track=1155304759/size=small/bgcol=333333/linkcol=c9a24a/transparent=true/" role="button" tabindex="0" aria-label="Load the Bandcamp player for Solar Overdrive">
+          <div class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></div><span>Listen</span>
+        </div>
+      </article>
     </div>
+    <div class="dots" aria-hidden="true"></div>
+    <div class="note">Clicking loads content from Bandcamp.</div>
   </div>
 </section>
 
@@ -340,6 +391,28 @@ document.querySelectorAll('.facade').forEach(function(el){
   el.addEventListener('click',load);
   el.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); load(); } });
 });
+
+// Carrousel des sorties : flèches, points, clavier, glisser, lien direct #id-du-morceau
+(function(){
+  var track=document.querySelector('.car-track'); if(!track) return;
+  var cards=[].slice.call(track.querySelectorAll('.card-rel')), btns=document.querySelectorAll('.car-btn'), dots=document.querySelector('.dots');
+  function step(){ return cards.length>1 ? cards[1].offsetLeft-cards[0].offsetLeft : track.clientWidth; }
+  function maxIdx(){ return Math.max(0,Math.round((track.scrollWidth-track.clientWidth)/step())); }
+  function idx(){ return Math.round(track.scrollLeft/step()); }
+  function go(i){ i=Math.max(0,Math.min(maxIdx(),i)); track.scrollTo({left:i*step(),behavior:'smooth'}); }
+  function update(){ var i=idx(), m=maxIdx();
+    btns[0].disabled=i<=0; btns[1].disabled=i>=m;
+    if(dots.children.length!==m+1){ dots.innerHTML=''; for(var k=0;k<=m;k++){ var d=document.createElement('button'); d.dataset.i=k; d.addEventListener('click',function(){go(+this.dataset.i)}); dots.appendChild(d);} dots.style.display=m?'flex':'none'; }
+    [].forEach.call(dots.children,function(d,k){ d.classList.toggle('on',k===i); }); }
+  btns.forEach(function(b){ b.addEventListener('click',function(){ go(idx()+parseInt(b.dataset.dir,10)); }); });
+  track.addEventListener('keydown',function(e){ if(e.key==='ArrowRight'){e.preventDefault();go(idx()+1);} if(e.key==='ArrowLeft'){e.preventDefault();go(idx()-1);} });
+  var to; track.addEventListener('scroll',function(){ clearTimeout(to); to=setTimeout(update,60); });
+  window.addEventListener('resize',update);
+  function fromHash(){ var h=location.hash.slice(1); cards.forEach(function(c,k){ if(c.id===h){
+      var sec=document.getElementById('music'); var place=function(){ window.scrollTo(0,sec.getBoundingClientRect().top+window.pageYOffset-60); track.scrollLeft=Math.min(k,maxIdx())*step(); }; place(); setTimeout(place,60); window.addEventListener('load',place);
+      c.classList.add('flash'); setTimeout(function(){c.classList.remove('flash')},2200); } }); update(); }
+  window.addEventListener('hashchange',fromHash); fromHash();
+})();
 </script>
 </body>
 </html>
