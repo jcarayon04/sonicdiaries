@@ -160,13 +160,14 @@ main{overflow-x:clip}
 .car-track{display:flex;gap:var(--gap);overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;-webkit-overflow-scrolling:touch;outline:none;padding:4px var(--P) 6px;scroll-padding-inline:var(--P)}
 .car-btn.side{position:absolute;z-index:3;top:var(--arrow-top,40%);transform:translateY(-50%);width:48px;height:48px;background:rgba(19,19,19,.85);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
 .car-btn.prev{left:max(6px,calc((var(--P) - var(--gap) - 48px)/2))}.car-btn.next{right:max(6px,calc((var(--P) - var(--gap) - 48px)/2))}
-.card-rel{transition:filter .45s,opacity .45s,box-shadow .4s}
-.card-rel.peek{filter:blur(3px) brightness(.55);opacity:.7;cursor:pointer}
-.card-rel.peek *{pointer-events:none}
+.car-item{transition:filter .45s,opacity .45s,box-shadow .4s}
+.car-item.peek{filter:blur(3px) brightness(.55);opacity:.7;cursor:pointer}
+.car-item.peek *{pointer-events:none}
 .car-track::-webkit-scrollbar{display:none}
-.card-rel{flex:0 0 calc((100% - 2*var(--gap))/3);scroll-snap-align:start;display:flex;flex-direction:column;border-radius:4px}
-@media (max-width:900px){.card-rel{flex-basis:calc((100% - var(--gap))/2)}}
-@media (max-width:600px){.card-rel{flex-basis:100%}}
+.car-item{flex:0 0 calc((100% - 2*var(--gap))/3);scroll-snap-align:start;display:flex;flex-direction:column;border-radius:4px}
+.car.two .car-item{flex-basis:calc((100% - var(--gap))/2)}
+@media (max-width:900px){.car-item{flex-basis:calc((100% - var(--gap))/2)}}
+@media (max-width:600px){.car-item,.car.two .car-item{flex-basis:100%}}
 .card-rel.flash{box-shadow:0 0 0 1px var(--gold)}
 .cov{position:relative;display:block;aspect-ratio:1;border:1px solid var(--line);border-radius:4px;overflow:hidden;background:var(--surface);transition:border-color .2s}
 .cov img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
@@ -186,7 +187,8 @@ main{overflow-x:clip}
 .dots{display:flex;justify-content:center;gap:8px;margin-top:26px}
 .dots button{width:8px;height:8px;padding:0;border-radius:50%;border:0;background:var(--line);cursor:pointer;transition:background .2s,transform .2s}
 .dots button.on{background:var(--gold);transform:scale(1.25)}
-#music .note{text-align:center}
+#music .note,#videos .note{text-align:center}
+#videos .more{text-align:center}
 </style>
 </head>
 <body>
@@ -221,7 +223,7 @@ main{overflow-x:clip}
 <main>
 
 <!-- ============ MUSIQUE : carrousel des sorties (3 cartes visibles) ============
-     Nouvelle sortie : copier un bloc <article class="card-rel"> EN PREMIER et déplacer le badge « New ».
+     Nouvelle sortie : copier un bloc <article class="car-item card-rel"> EN PREMIER et déplacer le badge « New ».
      Lecteur : numéro track=… ou album=… (Bandcamp → Share / Embed). -->
 <section id="music">
   <div class="wrap">
@@ -231,7 +233,7 @@ main{overflow-x:clip}
       <button class="car-btn side prev" data-dir="-1" aria-label="Sortie précédente"><svg viewBox="0 0 12 12"><path d="M8 1L3 6l5 5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
       <button class="car-btn side next" data-dir="1" aria-label="Sortie suivante"><svg viewBox="0 0 12 12"><path d="M4 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
     <div class="car-track" tabindex="0">
-      <article class="card-rel" id="ghost-reverie">
+      <article class="car-item card-rel" id="ghost-reverie">
         <a class="cov" href="https://julien-carayon.bandcamp.com/album/ghost-reverie" target="_blank" rel="noopener"><img src="../img/ghost-reverie.webp" alt="Ghost Reverie — pochette" width="800" height="800"></a>
         <h3>Ghost Reverie <span class="new">Nouveau</span></h3>
         <div class="meta">Novembre 2026 · 80 BPM</div>
@@ -242,18 +244,18 @@ main{overflow-x:clip}
           <div class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></div><span>Écouter</span>
         </div>
       </article>
-      <article class="card-rel" id="brand-new-day">
+      <article class="car-item card-rel" id="brand-new-day">
         <a class="cov" href="https://julien-carayon.bandcamp.com/track/brand-new-day" target="_blank" rel="noopener"><img src="../img/brand-new-day.webp" alt="Brand New Day — pochette" width="800" height="800"></a>
         <h3>Brand New Day</h3>
         <div class="meta">Septembre 2026 · 120 BPM</div>
         <p class="desc">Des guitares claires, beaucoup de chorus et un clin d'œil aux années 80. Une façon de faire durer l'été un peu plus longtemps.</p>
         <a class="btn primary full" href="https://julien-carayon.bandcamp.com/track/brand-new-day" target="_blank" rel="noopener">Acheter sur Bandcamp</a>
-        <div class="minis"><a class="btn sm" href="https://open.spotify.com/artist/27TAzzGmpJ8daUuZbbUHwj" target="_blank" rel="noopener">Spotify</a><a class="btn sm" href="https://music.apple.com/artist/julien-carayon/255318041" target="_blank" rel="noopener">Apple Music</a></div>
+        <div class="minis"><a class="btn sm" href="https://open.spotify.com/artist/27TAzzGmpJ8daUuZbbUHwj" target="_blank" rel="noopener">Spotify</a><a class="btn sm" href="https://music.apple.com/artist/julien-carayon/255318041" target="_blank" rel="noopener">Apple Music</a><a class="btn sm" href="https://www.youtube.com/watch?v=OkImI6FPrsg" target="_blank" rel="noopener">YouTube</a></div>
         <div class="facade mini" data-embed="https://bandcamp.com/EmbeddedPlayer/track=1738254884/size=small/bgcol=333333/linkcol=c9a24a/transparent=true/" role="button" tabindex="0" aria-label="Charger le lecteur Bandcamp pour Brand New Day">
           <div class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></div><span>Écouter</span>
         </div>
       </article>
-      <article class="card-rel" id="great-plains-crusher">
+      <article class="car-item card-rel" id="great-plains-crusher">
         <a class="cov" href="https://julien-carayon.bandcamp.com/track/great-plains-crusher" target="_blank" rel="noopener"><img src="../img/great-plains-crusher.webp" alt="Great Plains Crusher — pochette" width="800" height="800"></a>
         <h3>Great Plains Crusher</h3>
         <div class="meta">Juillet 2026 · 94 BPM</div>
@@ -264,7 +266,7 @@ main{overflow-x:clip}
           <div class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></div><span>Écouter</span>
         </div>
       </article>
-      <article class="card-rel" id="neon-eclipse">
+      <article class="car-item card-rel" id="neon-eclipse">
         <a class="cov" href="https://julien-carayon.bandcamp.com/track/neon-eclipse" target="_blank" rel="noopener"><img src="../img/neon-eclipse.webp" alt="Neon Eclipse — pochette" width="800" height="800" loading="lazy"></a>
         <h3>Neon Eclipse</h3>
         <div class="meta">Mai 2026 · 106 BPM</div>
@@ -275,13 +277,13 @@ main{overflow-x:clip}
           <div class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></div><span>Écouter</span>
         </div>
       </article>
-      <article class="card-rel" id="solar-overdrive">
+      <article class="car-item card-rel" id="solar-overdrive">
         <a class="cov" href="https://julien-carayon.bandcamp.com/track/solar-overdrive" target="_blank" rel="noopener"><img src="../img/solar-overdrive.webp" alt="Solar Overdrive — pochette" width="800" height="800" loading="lazy"></a>
         <h3>Solar Overdrive</h3>
         <div class="meta">Mars 2026 · 184 BPM</div>
         <p class="desc">Un rock instrumental rapide aux touches jazzy, qui évoque les grands espaces, le soleil et la liberté.</p>
         <a class="btn primary full" href="https://julien-carayon.bandcamp.com/track/solar-overdrive" target="_blank" rel="noopener">Acheter sur Bandcamp</a>
-        <div class="minis"><a class="btn sm" href="https://open.spotify.com/artist/27TAzzGmpJ8daUuZbbUHwj" target="_blank" rel="noopener">Spotify</a><a class="btn sm" href="https://music.apple.com/artist/julien-carayon/255318041" target="_blank" rel="noopener">Apple Music</a></div>
+        <div class="minis"><a class="btn sm" href="https://open.spotify.com/artist/27TAzzGmpJ8daUuZbbUHwj" target="_blank" rel="noopener">Spotify</a><a class="btn sm" href="https://music.apple.com/artist/julien-carayon/255318041" target="_blank" rel="noopener">Apple Music</a><a class="btn sm" href="https://www.youtube.com/watch?v=x2Nkk1Xd7QE" target="_blank" rel="noopener">YouTube</a></div>
         <div class="facade mini" data-embed="https://bandcamp.com/EmbeddedPlayer/track=1155304759/size=small/bgcol=333333/linkcol=c9a24a/transparent=true/" role="button" tabindex="0" aria-label="Charger le lecteur Bandcamp pour Solar Overdrive">
           <div class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></div><span>Écouter</span>
         </div>
@@ -293,27 +295,37 @@ main{overflow-x:clip}
   </div>
 </section>
 
-<!-- ============ VIDÉOS (3 maximum) ============ -->
+<!-- ============ VIDÉOS : présentoir (2 en vitrine) ============
+     Nouvelle vidéo : copier un bloc <article class="car-item video"> en premier, miniature dans img/thumb-NOM.webp (16:9). -->
 <section id="videos">
   <div class="wrap">
     <div class="label">Vidéos</div>
     <h2>Regarder</h2>
-    <div class="videos">
-      <!-- Vignettes : miniature de chaque vidéo dans img/ (.webp, 16:9).
-           Pour ajouter une 3e vidéo : copie un bloc <div class="video">…</div> -->
-      <div class="video">
-        <div class="facade" data-yt="lBZGCIg6cEI" style="background-image:url(../img/thumb-ghost-reverie.webp)" role="button" tabindex="0" aria-label="Lire Ghost Reverie">
-          <div><div class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></div></div>
-        </div>
-        <h4>Ghost Reverie</h4><p>Clip officiel</p>
-      </div>
-      <div class="video">
-        <div class="facade" data-yt="Xv1NCjbTaGs" style="background-image:url(../img/thumb-great-plains-crusher.webp)" role="button" tabindex="0" aria-label="Lire Great Plains Crusher">
-          <div><div class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></div></div>
-        </div>
-        <h4>Great Plains Crusher</h4><p>Morceau complet</p>
+    <div class="car two">
+      <button class="car-btn side prev" data-dir="-1" aria-label="Vidéo précédente"><svg viewBox="0 0 12 12"><path d="M8 1L3 6l5 5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
+      <button class="car-btn side next" data-dir="1" aria-label="Vidéo suivante"><svg viewBox="0 0 12 12"><path d="M4 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
+      <div class="car-track" tabindex="0">
+        <article class="car-item video">
+          <div class="facade" data-yt="lBZGCIg6cEI" style="background-image:url(../img/thumb-ghost-reverie.webp)" role="button" tabindex="0" aria-label="Lire Ghost Reverie">
+            <div><div class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></div></div>
+          </div>
+          <h4>Ghost Reverie</h4><p>Clip officiel</p>
+        </article>
+        <article class="car-item video">
+          <div class="facade" data-yt="OkImI6FPrsg" style="background-image:url(../img/thumb-brand-new-day.webp)" role="button" tabindex="0" aria-label="Lire Brand New Day">
+            <div><div class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></div></div>
+          </div>
+          <h4>Brand New Day</h4><p>Clip officiel</p>
+        </article>
+        <article class="car-item video">
+          <div class="facade" data-yt="x2Nkk1Xd7QE" style="background-image:url(../img/thumb-solar-overdrive.webp)" role="button" tabindex="0" aria-label="Lire Solar Overdrive">
+            <div><div class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></div></div>
+          </div>
+          <h4>Solar Overdrive</h4><p>Clip officiel</p>
+        </article>
       </div>
     </div>
+    <div class="dots" aria-hidden="true"></div>
     <div class="note">Le clic charge la vidéo depuis YouTube.</div>
     <div class="more"><a class="btn" href="https://www.youtube.com/user/JulienCarayon" target="_blank" rel="noopener">Toutes les vidéos sur YouTube →</a></div>
   </div>
@@ -381,60 +393,52 @@ main{overflow-x:clip}
 </footer>
 
 <script>
-// Charge les lecteurs YouTube / Bandcamp uniquement au clic (aucun cookie tiers avant)
-document.querySelectorAll('.facade').forEach(function(el){
-  function load(){
+// Charge les lecteurs YouTube / Bandcamp uniquement au clic (aucun cookie tiers avant) — délégué, marche aussi sur les copies du carrousel
+(function(){
+  function load(el){
     if(el.querySelector('iframe')) return;
-    var src;
-    if(el.dataset.yt){
-      if(el.dataset.yt.indexOf('VIDEO_ID')===0){ el.querySelector('div').lastChild.textContent=' Identifiant de vidéo à renseigner'; return; }
-      src='https://www.youtube-nocookie.com/embed/'+el.dataset.yt+'?autoplay=1&rel=0';
-    } else {
-      if(el.dataset.embed.indexOf('TRACK_ID')>-1){ el.querySelector('.inner').lastChild.textContent='Identifiant Bandcamp à renseigner'; return; }
-      src=el.dataset.embed;
-    }
+    var src=el.dataset.yt ? 'https://www.youtube-nocookie.com/embed/'+el.dataset.yt+'?autoplay=1&rel=0' : el.dataset.embed;
     var f=document.createElement('iframe');
-    f.src=src; f.allow='autoplay; encrypted-media; picture-in-picture; fullscreen'; f.allowFullscreen=true; f.title='Lecteur';
+    f.src=src; f.allow='autoplay; encrypted-media; picture-in-picture; fullscreen'; f.allowFullscreen=true; f.title='Player';
     el.innerHTML=''; el.appendChild(f); el.style.cursor='default';
   }
-  el.addEventListener('click',load);
-  el.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); load(); } });
-});
+  document.addEventListener('click',function(e){ var el=e.target.closest('.facade'); if(el&&!el.closest('.peek')) load(el); });
+  document.addEventListener('keydown',function(e){ var el=e.target.closest&&e.target.closest('.facade'); if(el&&(e.key==='Enter'||e.key===' ')){ e.preventDefault(); load(el); } });
+})();
 
-// Carrousel « présentoir » : rotation infinie dans les deux sens (flèches, points, clavier, glisser, lien direct #id)
-(function(){
-  var track=document.querySelector('.car-track'); if(!track) return;
-  var orig=[].slice.call(track.querySelectorAll('.card-rel')), n=orig.length, btns=document.querySelectorAll('.car-btn'), dots=document.querySelector('.dots');
-  // 3 jeux de cartes : copie | originaux | copie -> on reste toujours dans le jeu du milieu
-  function clone(c){ var x=c.cloneNode(true); x.removeAttribute('id'); x.setAttribute('aria-hidden','true'); x.classList.add('clone');
-    [].forEach.call(x.querySelectorAll('a,button,[tabindex]'),function(e){ e.setAttribute('tabindex','-1'); }); return x; }
+// Carrousels « présentoir » : rotation infinie dans les deux sens (flèches, points, clavier, glisser, lien direct #id)
+document.querySelectorAll('.car').forEach(function(car){
+  var sec=car.closest('section'), track=car.querySelector('.car-track');
+  var orig=[].slice.call(track.querySelectorAll('.car-item')), n=orig.length, btns=car.querySelectorAll('.car-btn'), dots=sec.querySelector('.dots');
+  // 3 jeux : copie | originaux | copie -> on reste toujours dans le jeu du milieu
+  function clone(c){ var x=c.cloneNode(true); x.removeAttribute('id'); x.classList.add('clone'); return x; }
   orig.slice().reverse().forEach(function(c){ track.insertBefore(clone(c),track.firstChild); });
   orig.forEach(function(c){ track.appendChild(clone(c)); });
-  var all=[].slice.call(track.querySelectorAll('.card-rel')), car=document.querySelector('.car');
+  var all=[].slice.call(track.querySelectorAll('.car-item'));
   function step(){ return all[1].offsetLeft-all[0].offsetLeft; }
   function idx(){ return Math.round(track.scrollLeft/step()); }
-  function jump(i){ track.style.scrollBehavior='auto'; track.style.scrollSnapType='none'; track.scrollLeft=i*step(); track.offsetHeight; track.style.scrollSnapType=''; track.style.scrollBehavior=''; }
-  function go(i){ track.scrollTo({left:i*step(),behavior:'smooth'}); peek(i); }
-  function arrows(){ var cov=orig[0].querySelector('.cov'); if(cov) car.style.setProperty('--arrow-top',(cov.offsetTop-track.offsetTop+cov.offsetHeight/2+4)+'px'); }
-  function settle(){ var i=idx(); if(i<n) jump(i+n); else if(i>=2*n) jump(i-n); mark(); }
   function visible(){ var P=parseFloat(getComputedStyle(track).paddingLeft)||0, g=step()-all[0].offsetWidth; return Math.max(1,Math.round((track.clientWidth-2*P+g)/step())); }
   function peek(i){ var v=visible(); all.forEach(function(c,j){ c.classList.toggle('peek',j<i||j>=i+v); }); }
-  track.addEventListener('click',function(e){ var c=e.target.closest('.card-rel'); if(c&&c.classList.contains('peek')){ e.preventDefault(); e.stopPropagation(); go(all.indexOf(c)<idx()?idx()-1:idx()+1); } },true);
+  function jump(i){ track.style.scrollBehavior='auto'; track.style.scrollSnapType='none'; track.scrollLeft=i*step(); track.offsetHeight; track.style.scrollSnapType=''; track.style.scrollBehavior=''; }
+  function go(i){ track.scrollTo({left:i*step(),behavior:'smooth'}); peek(i); }
+  function arrows(){ var a=orig[0].querySelector('.cov,.facade'); if(a) car.style.setProperty('--arrow-top',(a.offsetTop-track.offsetTop+a.offsetHeight/2+4)+'px'); }
   function mark(){ peek(idx()); var k=((idx()-n)%n+n)%n; [].forEach.call(dots.children,function(d,j){ d.classList.toggle('on',j===k); }); }
-  for(var k=0;k<n;k++){ var d=document.createElement('button'); d.dataset.i=k; d.setAttribute('aria-label',orig[k].querySelector('h3').firstChild.textContent.trim());
+  function settle(){ var i=idx(); if(i<n) jump(i+n); else if(i>=2*n) jump(i-n); mark(); }
+  for(var k=0;k<n;k++){ var d=document.createElement('button'); d.dataset.i=k; var h=orig[k].querySelector('h3,h4'); if(h) d.setAttribute('aria-label',h.firstChild.textContent.trim());
     d.addEventListener('click',function(){ go(n+(+this.dataset.i)); }); dots.appendChild(d); }
+  track.addEventListener('click',function(e){ var c=e.target.closest('.car-item'); if(c&&c.classList.contains('peek')){ e.preventDefault(); e.stopPropagation(); go(all.indexOf(c)<idx()?idx()-1:idx()+1); } },true);
   btns.forEach(function(b){ b.addEventListener('click',function(){ go(idx()+parseInt(b.dataset.dir,10)); }); });
-  track.addEventListener('keydown',function(e){ if(e.key==='ArrowRight'){e.preventDefault();go(idx()+1);} if(e.key==='ArrowLeft'){e.preventDefault();go(idx()-1);} });
+  track.addEventListener('keydown',function(e){ if(e.target!==track) return; if(e.key==='ArrowRight'){e.preventDefault();go(idx()+1);} if(e.key==='ArrowLeft'){e.preventDefault();go(idx()-1);} });
   var to; track.addEventListener('scroll',function(){ clearTimeout(to); to=setTimeout(settle,120); });
-  window.addEventListener('resize',function(){ arrows(); jump(n+(((idx()-n)%n+n)%n)); });
+  window.addEventListener('resize',function(){ arrows(); jump(n+(((idx()-n)%n+n)%n)); mark(); });
   function start(k){ arrows(); jump(n+k); mark(); }
-  function fromHash(){ var h=location.hash.slice(1), hit=false; orig.forEach(function(c,k){ if(c.id===h){ hit=true;
-      var sec=document.getElementById('music'); var place=function(){ window.scrollTo(0,sec.getBoundingClientRect().top+window.pageYOffset-60); start(k); };
+  function fromHash(){ var h=location.hash.slice(1), hit=false; orig.forEach(function(c,k){ if(h&&c.id===h){ hit=true;
+      var place=function(){ window.scrollTo(0,sec.getBoundingClientRect().top+window.pageYOffset-60); start(k); };
       place(); setTimeout(place,60); window.addEventListener('load',place);
       c.classList.add('flash'); setTimeout(function(){c.classList.remove('flash')},2200); } }); return hit; }
   window.addEventListener('hashchange',fromHash);
   if(!fromHash()){ start(0); window.addEventListener('load',function(){ start(((idx()-n)%n+n)%n); }); }
-})();
+});
 </script>
 </body>
 </html>
