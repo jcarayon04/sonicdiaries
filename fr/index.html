@@ -193,6 +193,19 @@ main{overflow-x:clip}
 .dots button.on{background:var(--gold);transform:scale(1.25)}
 #music .note,#videos .note{text-align:center}
 #videos .more{text-align:center}
+
+/* À la une (Spotlight) : morceau/vidéo épinglé */
+#spotlight{background:radial-gradient(ellipse at 28% 45%,rgba(90,120,160,.16),transparent 62%),var(--bg)}
+.spot{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:46px;align-items:center}
+@media (max-width:900px){.spot{grid-template-columns:1fr;gap:26px}}
+.spot .facade{aspect-ratio:16/9;background-size:cover;background-position:center;box-shadow:0 20px 60px rgba(0,0,0,.55)}
+.spot .facade .play{width:76px;height:76px;margin:0;background:rgba(10,10,10,.6)}
+.spot .facade .play svg{width:22px;height:22px}
+.spot h2{margin-bottom:8px}
+.spot .meta{color:var(--muted);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:22px}
+.spot .story{font-family:var(--serif);font-style:italic;font-size:clamp(1.3rem,2.2vw,1.6rem);line-height:1.35;color:var(--gold-2);margin-bottom:16px}
+.spot .p2{color:#cfcac0;margin-bottom:14px}
+.spot .credits{color:var(--muted);font-size:.82rem;letter-spacing:.04em;margin-bottom:26px}
 </style>
 </head>
 <body>
@@ -225,6 +238,29 @@ main{overflow-x:clip}
 </header>
 
 <main>
+
+<!-- ============ À LA UNE : morceau / vidéo épinglé (reste en place quelles que soient les nouvelles sorties) ============ -->
+<section id="spotlight">
+  <div class="wrap">
+    <div class="label">À la une</div>
+    <div class="spot">
+      <div class="facade" data-yt="lBZGCIg6cEI" style="background-image:url(../img/spotlight-ghost-reverie.webp),url(../img/thumb-ghost-reverie.webp)" role="button" tabindex="0" aria-label="Lire le clip de Ghost Reverie">
+        <div class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></div>
+      </div>
+      <div>
+        <h2>Ghost Reverie</h2>
+        <div class="meta">Clip officiel · 5:36</div>
+        <p class="story">Un manoir oublié. Une femme endormie dans un lit de fer forgé. Et une guitare qui résonne d'une autre époque.</p>
+        <p class="p2"><em>Ghost Reverie</em> est une histoire de fantômes racontée sans un mot : la musique écrit le scénario, les images suivent.</p>
+        <p class="credits">Musique et film : Julien Carayon</p>
+        <div class="btnrow">
+          <a class="btn primary" href="https://julien-carayon.bandcamp.com/album/ghost-reverie" target="_blank" rel="noopener">Acheter sur Bandcamp</a>
+          <a class="btn" href="https://www.youtube.com/watch?v=lBZGCIg6cEI" target="_blank" rel="noopener">Voir sur YouTube</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ============ MUSIQUE : carrousel des sorties (3 cartes visibles) ============
      Nouvelle sortie : copier un bloc <article class="car-item card-rel"> EN PREMIER et déplacer le badge « New ».
