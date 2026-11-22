@@ -150,11 +150,14 @@ footer a:hover{color:var(--gold-2)}
 /* Carrousel des sorties : 3 cartes visibles (2 sur tablette, 1 sur téléphone) */
 .car-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:30px}
 .car-head h2{margin:0}
-.car-nav{display:flex;gap:10px}
 .car-btn{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color .2s,color .2s,opacity .2s}
 .car-btn:hover{border-color:var(--gold);color:var(--gold-2)}
-.car-btn:disabled{opacity:.3;cursor:default;border-color:var(--line);color:var(--text)}
-.car-btn svg{width:13px;height:13px}
+.car-btn:disabled{opacity:0;pointer-events:none}
+.car{position:relative}
+.car-btn.side{position:absolute;z-index:2;top:var(--arrow-top,40%);transform:translateY(-50%);width:48px;height:48px;background:rgba(19,19,19,.85)}
+.car-btn.prev{left:-72px}.car-btn.next{right:-72px}
+@media (max-width:1240px){.car-btn.prev{left:10px}.car-btn.next{right:10px}.car-btn.side{backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}}
+.car-btn svg{width:15px;height:15px}
 .car-track{--gap:24px;display:flex;gap:var(--gap);overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;-webkit-overflow-scrolling:touch;outline:none;padding:4px 2px 6px}
 .car-track::-webkit-scrollbar{display:none}
 .card-rel{flex:0 0 calc((100% - 2*var(--gap))/3);scroll-snap-align:start;display:flex;flex-direction:column;border-radius:4px;transition:box-shadow .4s}
@@ -219,10 +222,10 @@ footer a:hover{color:var(--gold-2)}
 <section id="music">
   <div class="wrap">
     <div class="label">Musique</div>
-    <div class="car-head"><h2>Les sorties</h2>
-      <div class="car-nav">
-        <button class="car-btn" data-dir="-1" aria-label="Sortie précédente"><svg viewBox="0 0 12 12"><path d="M8 1L3 6l5 5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
-        <button class="car-btn" data-dir="1" aria-label="Sortie suivante"><svg viewBox="0 0 12 12"><path d="M4 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button></div></div>
+    <div class="car-head"><h2>Les sorties</h2></div>
+    <div class="car">
+      <button class="car-btn side prev" data-dir="-1" aria-label="Sortie précédente"><svg viewBox="0 0 12 12"><path d="M8 1L3 6l5 5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
+      <button class="car-btn side next" data-dir="1" aria-label="Sortie suivante"><svg viewBox="0 0 12 12"><path d="M4 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
     <div class="car-track" tabindex="0">
       <article class="card-rel" id="ghost-reverie">
         <a class="cov" href="https://julien-carayon.bandcamp.com/album/ghost-reverie" target="_blank" rel="noopener"><img src="../img/ghost-reverie.webp" alt="Ghost Reverie — pochette" width="800" height="800"></a>
@@ -279,6 +282,7 @@ footer a:hover{color:var(--gold-2)}
           <div class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></div><span>Écouter</span>
         </div>
       </article>
+    </div>
     </div>
     <div class="dots" aria-hidden="true"></div>
     <div class="note">Le clic charge un contenu depuis Bandcamp.</div>
@@ -401,7 +405,9 @@ document.querySelectorAll('.facade').forEach(function(el){
   function maxIdx(){ return Math.max(0,Math.round((track.scrollWidth-track.clientWidth)/step())); }
   function idx(){ return Math.round(track.scrollLeft/step()); }
   function go(i){ i=Math.max(0,Math.min(maxIdx(),i)); track.scrollTo({left:i*step(),behavior:'smooth'}); }
-  function update(){ var i=idx(), m=maxIdx();
+  var car=document.querySelector('.car'), cov=track.querySelector('.cov');
+  function arrows(){ if(cov) car.style.setProperty('--arrow-top',(cov.offsetTop-track.offsetTop+cov.offsetHeight/2+4)+'px'); }
+  function update(){ arrows(); var i=idx(), m=maxIdx();
     btns[0].disabled=i<=0; btns[1].disabled=i>=m;
     if(dots.children.length!==m+1){ dots.innerHTML=''; for(var k=0;k<=m;k++){ var d=document.createElement('button'); d.dataset.i=k; d.addEventListener('click',function(){go(+this.dataset.i)}); dots.appendChild(d);} dots.style.display=m?'flex':'none'; }
     [].forEach.call(dots.children,function(d,k){ d.classList.toggle('on',k===i); }); }
