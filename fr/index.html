@@ -152,7 +152,6 @@ footer a:hover{color:var(--gold-2)}
 .car-head h2{margin:0}
 .car-btn{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color .2s,color .2s,opacity .2s}
 .car-btn:hover{border-color:var(--gold);color:var(--gold-2)}
-.car-btn:disabled{opacity:0;pointer-events:none}
 .car{position:relative}
 .car-btn.side{position:absolute;z-index:2;top:var(--arrow-top,40%);transform:translateY(-50%);width:48px;height:48px;background:rgba(19,19,19,.85)}
 .car-btn.prev{left:-72px}.car-btn.next{right:-72px}
@@ -397,28 +396,36 @@ document.querySelectorAll('.facade').forEach(function(el){
   el.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); load(); } });
 });
 
-// Carrousel des sorties : flèches, points, clavier, glisser, lien direct #id-du-morceau
+// Carrousel « présentoir » : rotation infinie dans les deux sens (flèches, points, clavier, glisser, lien direct #id)
 (function(){
   var track=document.querySelector('.car-track'); if(!track) return;
-  var cards=[].slice.call(track.querySelectorAll('.card-rel')), btns=document.querySelectorAll('.car-btn'), dots=document.querySelector('.dots');
-  function step(){ return cards.length>1 ? cards[1].offsetLeft-cards[0].offsetLeft : track.clientWidth; }
-  function maxIdx(){ return Math.max(0,Math.round((track.scrollWidth-track.clientWidth)/step())); }
+  var orig=[].slice.call(track.querySelectorAll('.card-rel')), n=orig.length, btns=document.querySelectorAll('.car-btn'), dots=document.querySelector('.dots');
+  // 3 jeux de cartes : copie | originaux | copie -> on reste toujours dans le jeu du milieu
+  function clone(c){ var x=c.cloneNode(true); x.removeAttribute('id'); x.setAttribute('aria-hidden','true'); x.classList.add('clone');
+    [].forEach.call(x.querySelectorAll('a,button,[tabindex]'),function(e){ e.setAttribute('tabindex','-1'); }); return x; }
+  orig.slice().reverse().forEach(function(c){ track.insertBefore(clone(c),track.firstChild); });
+  orig.forEach(function(c){ track.appendChild(clone(c)); });
+  var all=[].slice.call(track.querySelectorAll('.card-rel')), car=document.querySelector('.car');
+  function step(){ return all[1].offsetLeft-all[0].offsetLeft; }
   function idx(){ return Math.round(track.scrollLeft/step()); }
-  function go(i){ i=Math.max(0,Math.min(maxIdx(),i)); track.scrollTo({left:i*step(),behavior:'smooth'}); }
-  var car=document.querySelector('.car'), cov=track.querySelector('.cov');
-  function arrows(){ if(cov) car.style.setProperty('--arrow-top',(cov.offsetTop-track.offsetTop+cov.offsetHeight/2+4)+'px'); }
-  function update(){ arrows(); var i=idx(), m=maxIdx();
-    btns[0].disabled=i<=0; btns[1].disabled=i>=m;
-    if(dots.children.length!==m+1){ dots.innerHTML=''; for(var k=0;k<=m;k++){ var d=document.createElement('button'); d.dataset.i=k; d.addEventListener('click',function(){go(+this.dataset.i)}); dots.appendChild(d);} dots.style.display=m?'flex':'none'; }
-    [].forEach.call(dots.children,function(d,k){ d.classList.toggle('on',k===i); }); }
+  function jump(i){ track.style.scrollBehavior='auto'; track.style.scrollSnapType='none'; track.scrollLeft=i*step(); track.offsetHeight; track.style.scrollSnapType=''; track.style.scrollBehavior=''; }
+  function go(i){ track.scrollTo({left:i*step(),behavior:'smooth'}); }
+  function arrows(){ var cov=orig[0].querySelector('.cov'); if(cov) car.style.setProperty('--arrow-top',(cov.offsetTop-track.offsetTop+cov.offsetHeight/2+4)+'px'); }
+  function settle(){ var i=idx(); if(i<n) jump(i+n); else if(i>=2*n) jump(i-n); mark(); }
+  function mark(){ var k=((idx()-n)%n+n)%n; [].forEach.call(dots.children,function(d,j){ d.classList.toggle('on',j===k); }); }
+  for(var k=0;k<n;k++){ var d=document.createElement('button'); d.dataset.i=k; d.setAttribute('aria-label',orig[k].querySelector('h3').firstChild.textContent.trim());
+    d.addEventListener('click',function(){ go(n+(+this.dataset.i)); }); dots.appendChild(d); }
   btns.forEach(function(b){ b.addEventListener('click',function(){ go(idx()+parseInt(b.dataset.dir,10)); }); });
   track.addEventListener('keydown',function(e){ if(e.key==='ArrowRight'){e.preventDefault();go(idx()+1);} if(e.key==='ArrowLeft'){e.preventDefault();go(idx()-1);} });
-  var to; track.addEventListener('scroll',function(){ clearTimeout(to); to=setTimeout(update,60); });
-  window.addEventListener('resize',update);
-  function fromHash(){ var h=location.hash.slice(1); cards.forEach(function(c,k){ if(c.id===h){
-      var sec=document.getElementById('music'); var place=function(){ window.scrollTo(0,sec.getBoundingClientRect().top+window.pageYOffset-60); track.scrollLeft=Math.min(k,maxIdx())*step(); }; place(); setTimeout(place,60); window.addEventListener('load',place);
-      c.classList.add('flash'); setTimeout(function(){c.classList.remove('flash')},2200); } }); update(); }
-  window.addEventListener('hashchange',fromHash); fromHash();
+  var to; track.addEventListener('scroll',function(){ clearTimeout(to); to=setTimeout(settle,120); });
+  window.addEventListener('resize',function(){ arrows(); jump(n+(((idx()-n)%n+n)%n)); });
+  function start(k){ arrows(); jump(n+k); mark(); }
+  function fromHash(){ var h=location.hash.slice(1), hit=false; orig.forEach(function(c,k){ if(c.id===h){ hit=true;
+      var sec=document.getElementById('music'); var place=function(){ window.scrollTo(0,sec.getBoundingClientRect().top+window.pageYOffset-60); start(k); };
+      place(); setTimeout(place,60); window.addEventListener('load',place);
+      c.classList.add('flash'); setTimeout(function(){c.classList.remove('flash')},2200); } }); return hit; }
+  window.addEventListener('hashchange',fromHash);
+  if(!fromHash()){ start(0); window.addEventListener('load',function(){ start(((idx()-n)%n+n)%n); }); }
 })();
 </script>
 </body>
