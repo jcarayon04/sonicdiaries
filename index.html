@@ -480,8 +480,16 @@ main{overflow-x:clip}
 <script>
 // Charge les lecteurs YouTube / Bandcamp uniquement au clic (aucun cookie tiers avant) - délégué, marche aussi sur les copies du carrousel
 (function(){
+  // Un seul lecteur à la fois : on referme les autres (un lecteur refermé s'arrête)
+  function closeOthers(el){
+    document.querySelectorAll('.facade').forEach(function(o){
+      if(o!==el && o.querySelector('iframe') && o.dataset.orig!==undefined){ o.innerHTML=o.dataset.orig; o.style.cursor=''; }
+    });
+  }
   function load(el){
     if(el.querySelector('iframe')) return;
+    closeOthers(el);
+    el.dataset.orig=el.innerHTML;
     var src=el.dataset.yt ? 'https://www.youtube-nocookie.com/embed/'+el.dataset.yt+'?autoplay=1&rel=0' : el.dataset.embed;
     var f=document.createElement('iframe');
     f.src=src; f.allow='autoplay; encrypted-media; picture-in-picture; fullscreen'; f.allowFullscreen=true; f.title='Player';
